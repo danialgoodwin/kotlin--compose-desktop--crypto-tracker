@@ -12,6 +12,8 @@ import java.util.Properties
 
 object CoinMarketCapApi {
 
+    private const val IS_TEST = true
+
     private val PRODUCTION_API_KEY: String = Properties().let { prop ->
         FileInputStream("src/main/resources/local.properties").use { prop.load(it) }
 //        FileInputStream("local.properties").use { prop.load(it) }
@@ -21,8 +23,6 @@ object CoinMarketCapApi {
 
     private const val TEST_API_KEY = "b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c"
     private const val TEST_BASE_URL = "https://sandbox-api.coinmarketcap.com/v1"
-
-    private const val IS_TEST = true
 
     private fun apiKey(): String = if (IS_TEST) TEST_API_KEY else PRODUCTION_API_KEY
     private fun baseUrl(): String = if (IS_TEST) TEST_BASE_URL else PRODUCTION_BASE_URL
